@@ -2,18 +2,21 @@
 
 A reddit application that downloads pictures and gifs from a given subreddit.
 
-# This is a port to python3 with some minor changes to the code. 
+Changes: 
+- requires python3
+- files are saved in a specific "subreddit" folder
+- files are named according to submission title
 
 # Setup 
 1. Create a [reddit personal use script application](https://www.reddit.com/prefs/apps/).
 
 2. Add a `config.py` file to your working directory and add your applications credentials.
 
-		ID='YOUR_ID'  
-		SECRET='YOUR_SECRET'  
-		PASSWORD='YOUR_PASSWORD'  
-		AGENT='Example Bot by /u/example_bot'  
-		USERNAME='YOUR_USERNAME'  
+		client_id='YOUR_ID'  
+		secret='YOUR_SECRET'  
+		password='YOUR_PASSWORD'  
+		agent='Example Bot by /u/example_bot'  
+		username='YOUR_USERNAME'  
 
 3. Run `pip install -r requirements.txt`
 
