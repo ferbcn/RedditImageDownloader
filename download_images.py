@@ -22,7 +22,7 @@ from prawcore import NotFound
 from prawcore import PrawcoreException
 from docopt import docopt
 
-import config
+from config import ID, SECRET, PASSWORD, AGENT, USERNAME
 
 def PrintDL(subreddit, count, extension, img_url, submission):
     print ('\nDownloading from ' + subreddit.upper() + " #" + str (count) + ": " + submission.title)
@@ -41,11 +41,11 @@ def main():
 
     # connect to reddit
     reddit = praw.Reddit(
-        client_id=config.client_id,
-        client_secret=config.secret,
-        password=config.password,
-        user_agent=config.agent,
-        username=config.username)
+        client_id=ID,
+        client_secret=SECRET,
+        password=PASSWORD,
+        user_agent=AGENT,
+        username=USERNAME)
 
     # get values of arguments
     subreddit = arguments.get('--subreddit')
@@ -95,9 +95,9 @@ def main():
         count = 1
         for submission in results:
             if count <= num_pics:
+                img_url = submission.url
+                img_title = submission.title
                 if 'https://i.imgur.com/' in submission.url or 'https://i.redd.it' in submission.url:
-                    img_url = submission.url
-                    img_title = submission.title
                     _, extension = os.path.splitext(img_url)
                     if extension in ['.jpg', '.gif', '.jpeg', '.png']:
                         PrintDL(subreddit, count, extension, img_url, submission)
@@ -118,16 +118,13 @@ def main():
                         except Exception as e:
                             print(e)
                 if 'https://thumbs.gfycat.com/' in submission.url:
-                    img_url = submission.url
-                    img_title = submission.title
+
                     PrintDL (subreddit, count, ".gif", img_url, submission)
                     urllib.request.urlretrieve(img_url, 'images/%s/%i_%s%s' %
                                            (subreddit, count, img_title, '.gif'))
                     count += 1
                 # some gfycat conversions will not work due to capitalizations of link
                 if 'https://gfycat.com/' in submission.url:
-                    img_url = submission.url
-                    img_title = submission.title
                     img_url = img_url.split('https://', 1)
                     img_url = 'https://thumbs.' + img_url[1]
                     if 'gifs/detail/' in img_url:
