@@ -1,11 +1,13 @@
-# Reddit Image Downloader
+# Reddit Image Downloader Python3
 
 A reddit application that downloads pictures and gifs from a given subreddit.
+
+# This is a port to python3 with some minor changes to the code. 
 
 # Setup 
 1. Create a [reddit personal use script application](https://www.reddit.com/prefs/apps/).
 
-2. Add a `credentials.py` file to your working directory and add your applications credentials.
+2. Add a `config.py` file to your working directory and add your applications credentials.
 
 		ID='YOUR_ID'  
 		SECRET='YOUR_SECRET'  
@@ -27,7 +29,7 @@ A reddit application that downloads pictures and gifs from a given subreddit.
 	-q --query SEARCH QUERY             specify a specific search term
 
 
-Your images will appear in the "images" folder created by the application.
+Your images will appear in the "images/[SUBREDDIT]" folder created by the application.
 
 __Helpful note:__ To view .gif files on a Mac select the image(s) and press "cmd" + "y".
 
